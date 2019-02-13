@@ -2,7 +2,9 @@ import React from 'react';
 import { ScrollView, StyleSheet, Text, View, Image } from 'react-native';
 import { AdMobBanner } from 'expo';
 import Images from '../files/images.js';
+
 const data = require('../files/data.json');
+
 export default class ReseptScreen extends React.Component {
   static navigationOptions = (props) => {
     const { navigation } = props;
@@ -25,10 +27,11 @@ export default class ReseptScreen extends React.Component {
           <Text style={styles.title}>
             {data[itemId].titlePage}
           </Text>
+          <View style={styles.MainImg}>
           <Image source={Images[data[itemId].id]} 
-          resizeMode="contain"
           fadeDuration={0}
           style={styles.image}/>
+          </View>
           <Text style={styles.text}>
             {data[itemId].text}
           </Text>
@@ -37,6 +40,7 @@ export default class ReseptScreen extends React.Component {
           <AdMobBanner
               bannerSize="smartBannerPortrait"
               adUnitID="ca-app-pub-3859504316235219/6520440427" // Test ID, Replace with your-admob-unit-id
+              testDeviceID="EMULATOR"
               onDidFailToReceiveAdWithError={this.bannerError} />
         </View>
       </View>
@@ -63,18 +67,25 @@ const styles = StyleSheet.create({
     paddingBottom: 50,
     color: '#5E3B4F',
   },
+  MainImg: {
+    backgroundColor: '#FFFFF0',
+    height: 190, 
+  },
   image: {
+    width: '100%', 
+    height: '100%',
+    resizeMode: 'cover',
     alignSelf:'center',
-    width: 220, 
-    height: 150, 
   },
   AdMob: {
     zIndex: 1000, 
     position: 'absolute', 
     bottom: 0, 
     backgroundColor: '#fff', 
+    opacity: 0.1,
     alignItems: 'center', 
     alignSelf: 'center', 
+    
     flex: 1 
   },
 });

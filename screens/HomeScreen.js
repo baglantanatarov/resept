@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet, Text, FlatList, Image } from 'react-native';
+import { View, StyleSheet, Text, FlatList, Image, ScrollView  } from 'react-native';
 import Touchable from 'react-native-platform-touchable';
 import { AdMobBanner } from 'expo';
 
@@ -23,6 +23,7 @@ export default class HomeScreen extends React.Component {
   render() {
     return (
       <View style={styles.container}>
+      <ScrollView>
       <Text style={styles.optionsTitleText}>Тiзiмдер</Text>
         <FlatList
           data={data}
@@ -50,10 +51,13 @@ export default class HomeScreen extends React.Component {
             }
           keyExtractor={({id}, index) => id}
         />
+        </ScrollView>
         <View style={styles.AdMob}> 
           <AdMobBanner
               bannerSize="smartBannerPortrait"
               adUnitID="ca-app-pub-3859504316235219/6520440427" // Test ID, Replace with your-admob-unit-id
+              testDevices={[AdMobBanner.simulatorId]}
+              testDeviceID="EMULATOR"
               onDidFailToReceiveAdWithError={this.bannerError} />
         </View>
       </View>
@@ -64,7 +68,6 @@ export default class HomeScreen extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: 6,
     backgroundColor: '#fff',
   },
   optionsTitleText: {
@@ -91,12 +94,8 @@ const styles = StyleSheet.create({
     marginTop: 1,
   },
   AdMob: {
-    zIndex: 1000, 
-    position: 'absolute', 
-    bottom: 0, 
-    backgroundColor: '#fff', 
+    opacity: 0.1,
     alignItems: 'center', 
     alignSelf: 'center', 
-    flex: 1 
   },
 });

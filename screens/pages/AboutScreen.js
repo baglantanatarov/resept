@@ -25,7 +25,7 @@ export default class SettingsScreen extends React.Component {
           Мұндағы барлық рецептер қол жетімді әрі тегін.
         </Text>
         <Text style={styles.textMain}>
-          Алдыдағы уақытта бағдарламаны әлі де дамытамыз.
+          Алдыдағы уақытта бағдарламаның жаңартулары мен рецептердің жаңа түрлері шығатын болады.
         </Text>
         <Text style={styles.textMain}>
           Егерде сұрақтарыңыз бен ұсыныстарыңыз болса мына baglan060495@gmail.com почтаға жаза аласыздар.
@@ -42,6 +42,8 @@ export default class SettingsScreen extends React.Component {
         <AdMobBanner
             bannerSize="smartBannerPortrait"
             adUnitID="ca-app-pub-3859504316235219/6520440427" // Test ID, Replace with your-admob-unit-id
+            testDevices={[AdMobBanner.simulatorId]}
+            testDeviceID="EMULATOR"
             onDidFailToReceiveAdWithError={this.bannerError} />
       </View>
       </View>
@@ -52,7 +54,6 @@ export default class SettingsScreen extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: 6,
     backgroundColor: '#fff',
   },
   optionsTitleText: {
@@ -89,6 +90,7 @@ const styles = StyleSheet.create({
     position: 'absolute', 
     bottom: 0, 
     backgroundColor: '#fff', 
+    opacity: 0.1,
     alignItems: 'center', 
     alignSelf: 'center', 
     flex: 1 
